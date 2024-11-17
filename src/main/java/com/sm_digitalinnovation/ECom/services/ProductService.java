@@ -4,7 +4,9 @@ import com.sm_digitalinnovation.ECom.exceptions.ProuctsNotFoundException;
 import com.sm_digitalinnovation.ECom.model.Products;
 import com.sm_digitalinnovation.ECom.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +56,12 @@ public class ProductService {
         else {
             return null;
         }
+    }
+
+    public Products addProduct(Products products, MultipartFile imgFile) throws IOException {
+        products.setImageName(imgFile.getOriginalFilename());
+        products.setImageType(imgFile.getContentType());
+        products.setImage(imgFile.getBytes());
+        return  productRepository.save(products);
     }
 }

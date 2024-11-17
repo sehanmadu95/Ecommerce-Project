@@ -1,13 +1,7 @@
 package com.sm_digitalinnovation.ECom.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,8 +9,10 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @ToString
+@Builder
 public class Products {
     @Id
     private int id;
@@ -28,4 +24,10 @@ public class Products {
     private Date releaseDate;
     private boolean available;
     private int quantity;
+
+    private String imageName;
+    private String imageType;
+
+    @Lob
+    private byte[] image;
 }
